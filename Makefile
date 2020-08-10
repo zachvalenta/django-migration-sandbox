@@ -9,8 +9,13 @@ help:
 	@echo "🛠  UTILS"
 	@echo
 	@echo "srv:        run dev server"
-	@echo "mig:        make and run migrations"
 	@echo "super:      create superuser"
+	@echo
+	@echo "🗄  MIGRATIONS"
+	@echo
+	@echo "create:     make migration file"
+	@echo "apply:      apply migration file"
+	@echo "revert:     rm migration files"
 	@echo
 	@echo "📡  API - shell"
 	@echo
@@ -46,11 +51,21 @@ help:
 srv:
 	poetry run python manage.py runserver
 
-mig:
-	poetry run python manage.py makemigrations; poetry run python manage.py migrate
-
 super:
 	poetry run python manage.py createsuperuser
+
+#
+# 🗄 MIGRATIONS
+#
+
+create:
+	poetry run python manage.py makemigrations
+
+apply:
+	poetry run python manage.py migrate
+
+revert:
+	poetry run python manage.py migrate api $(mig)
 
 #
 # 📡 API - shell
